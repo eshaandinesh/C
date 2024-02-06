@@ -1,8 +1,23 @@
 #include <stdio.h>
 int lcm(int arr[]){
-    for(int i = 2;i<=315;i++){
-        if(i%arr[0]==0 && i%arr[1]==0 && i%arr[2]==0 && i%arr[3]==0 && i%arr[4]==0 && i%arr[5]==0 && i%arr[6]==0){
-        return i;
+    int length = 0;
+    int prod = 1;
+    for(int j  = 0;arr[j]!='\0';j++){
+        length++;
+        prod*=arr[j];
+    }
+    int count = 0;
+    for(int i = 1 ; i <= prod ; i++){
+        for(int j  = 0;arr[j]!='\0';j++){
+            if(i%arr[j]==0){
+                count++;
+            }
+        }
+        if(count==length){
+            return i;
+        }
+        else{
+            count = 0;
         }
     }
 }
@@ -19,13 +34,13 @@ int main(){
     char reg[10];
     scanf("%s",reg);
 
-    int even[7] = {1,1,1,1,1,1,1};
-    int odd[7] = {1,1,1,1,1,1,1};
+    int even[7];
+    int odd[7];
     int dig;
     int j = 0;
     int k = 0;
     for(int i = 0; reg[i]!='\0';i++){
-        if((int)reg[i]>=49 && (int)reg[i]<=57){
+        if(reg[i]>='1' && (int)reg[i]<='9'){
             dig = (int)reg[i]-48;
             if(dig%2==0){
                 even[j] = dig;
@@ -37,6 +52,9 @@ int main(){
             }
         }
     }
+    even[j] = 0;
+    odd[k] = 0;
+
     int lcm1 = lcm(even);
     printf("%d\n",lcm1);
     int lcm2 = lcm(odd);
