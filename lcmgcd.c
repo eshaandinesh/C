@@ -40,7 +40,7 @@ int main(){
     int j = 0;
     int k = 0;
     for(int i = 0; reg[i]!='\0';i++){
-        if(reg[i]>='1' && (int)reg[i]<='9'){
+        if(reg[i]>='1' && reg[i]<='9'){
             dig = (int)reg[i]-48;
             if(dig%2==0){
                 even[j] = dig;
